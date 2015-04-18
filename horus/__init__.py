@@ -1,9 +1,17 @@
-from flask import Flask
+from flask.ext.admin import Admin
+from .admin import AdminRequiredView
+from .models import User, Work, Company
+from .views import frontend_views
+from .apps import app
+from .models import db
 
 
-app = Flask(__name__)
+admin = Admin(app, endpoint='admin')
 
+admin.add_view(AdminRequiredView(User, db.session))
+admin.add_view(AdminRequiredView(Work, db.session))
+admin.add_view(AdminRequiredView(Company, db.session))
 
-@app.route('/')
-def index():
-    return 'Hello Horus!'
+app.register_blueprint(frontend_views)
+
+db.create_all()
