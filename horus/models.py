@@ -43,3 +43,11 @@ class Work(BasicModel, db.Model):
     publish_time = db.Column(db.DateTime)
     description = db.Column(db.String(1000))
     is_effective = db.Column(db.Boolean)
+
+
+class Resume(BasicModel, db.Model):
+    __database__ = 'resumes'
+
+    create_time = db.Column(db.DateTime)
+    update_time = db.Column(db.DateTime)
+    content = db.Column(db.Text)
