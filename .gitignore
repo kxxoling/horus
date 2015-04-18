@@ -1,0 +1,11 @@
+*.pyc
+*.swp
+*.mo
+*~
+
+.DS_Store
+.idea
+Icon?
+Thumbs.db
+
+config.py
