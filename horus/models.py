@@ -50,3 +50,4 @@ class Resume(BasicModel, db.Model):
     create_time = db.Column(db.DateTime)
     update_time = db.Column(db.DateTime)
     content = db.Column(db.Text)
+
