@@ -2,6 +2,13 @@
 html
   head
     title=page_title
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename='lib/semantic.min.css'))
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename='css/index.css'))
+
   body
-    h1.title Welcome to Horus
-    #main This is the index page!
+    #main.ui.page
+      .ui.center
+        h1.title Welcome to Horus
+        p.content Horus aims to connect the programmers with best matched company!
+        a.ui.huge.basic.button(href="/admin/") Get to admin!
+    script(href="http://semantic-ui.com/dist/semantic.min.js")
