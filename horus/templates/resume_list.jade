@@ -1,0 +1,22 @@
+!!! 5
+html
+  head
+    title=page_title
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename='lib/semantic.min.css'))
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename='css/resume_list.css'))
+
+  body
+    .main.container
+      #resume-list.ui.items
+        {% for resume in resume_list %}
+        .item
+          .content
+            h2
+              a.header(href=url_for('frontend.show_resume', resume_id=resume.id_))
+                | {{ resume.name or 'Untitled Resume' }}
+            .meta
+              span.ui.label {{ resume.update_time }}
+              span.ui.label {{ resume.create_time }}
+            .description
+              p {{ resume.content | safe }}
+        {% endfor %}
