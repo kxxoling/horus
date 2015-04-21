@@ -53,5 +53,5 @@ def register_static(app):
 
 
 def register_jinja(app):
-    app.jinja_env = Environment(extensions=['pyjade.ext.jinja.PyJadeExtension'])
+    app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
     return app
