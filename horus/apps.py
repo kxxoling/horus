@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import send_file
-from jinja2 import Environment
 
 from .views import frontend_views
 from .models import db as main_db
