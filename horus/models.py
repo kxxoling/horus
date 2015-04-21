@@ -1,8 +1,7 @@
 from flask.ext.sqlalchemy import SQLAlchemy
-from .apps import app
 
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 
 class BasicModel(object):
