@@ -1,12 +1,10 @@
 from flask import Flask
 from flask import send_file
-from flask.ext.admin import Admin
 from jinja2 import Environment
 
-from .admin import AdminRequiredView
-from .models import User, Work, Company
 from .views import frontend_views
 from .models import db as main_db
+from .admin import register_admin
 
 
 def create_app(config=None):
@@ -36,13 +34,6 @@ def create_app(config=None):
 def register_routes(app):
     app.register_blueprint(frontend_views)
     return app
-
-
-def register_admin(app, db):
-    admin = Admin(app, endpoint='admin')
-    admin.add_view(AdminRequiredView(User, db.session))
-    admin.add_view(AdminRequiredView(Work, db.session))
-    admin.add_view(AdminRequiredView(Company, db.session))
 
 
 def register_static(app):
