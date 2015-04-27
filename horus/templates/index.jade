@@ -1,14 +1,14 @@
-!!! 5
-html
-  head
-    title=page_title
-    link(rel="stylesheet", type="text/css", href=url_for('static', filename='lib/semantic.min.css'))
-    link(rel="stylesheet", type="text/css", href=url_for('static', filename='css/index.css'))
+{% extends "_base.jade" %}
+{% block title %}page_title{% endblock %}
 
-  body
-    #main.ui.page
-      .ui.center
-        h1.title Welcome to Horus
-        p.content Horus aims to connect the programmers with best matched company!
-        a.ui.huge.basic.button(href="/admin/") Get to admin!
-    script(href="http://semantic-ui.com/dist/semantic.min.js")
+{% block stylesheets %}
+link(rel="stylesheet", type="text/css", href=url_for('static', filename='css/index.css'))
+{% endblock %}
+
+{% block body %}
+#main.ui.page
+  .ui.center
+    h1.title Welcome to Horus
+    p.content Horus aims to connect the programmers with best matched company!
+    a.ui.huge.basic.button(href="/admin/") Get to admin!
+{% endblock %}

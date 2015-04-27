@@ -1,0 +1,13 @@
+!!! 5
+html
+  head
+    title
+      {% block title %}Horus is watching you{% endblock %}
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename = 'lib/semantic.min.css'))
+    {% block stylesheets %}{% endblock %}
+  body
+    {% block body %}{% endblock %}
+    {% block default_scripts %}
+    script(href="http://semantic-ui.com/dist/semantic.min.js")
+    {% endblock %}
+    {% block scripts %}{% endblock %}

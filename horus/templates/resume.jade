@@ -1,46 +1,47 @@
-!!! 5
-html
-  head
-    title=page_title
-    link(rel="stylesheet", type="text/css", href=url_for('static', filename='lib/semantic.min.css'))
-    link(rel="stylesheet", type="text/css", href=url_for('static', filename='css/resume.css'))
+{% extends "_base.jade" %}
+{% block stylesheets %}
+link(rel="stylesheet", type="text/css", href=url_for('static', filename = 'css/resume.css'))
+{% endblock %}
 
-  body
-    #resume
-      .time
-        span.update-time(v-model="update_time")
-        span.create-time(v-model="create_time")
+{% block body %}
+#resume
+  .time
+    span.update-time(v-model="update_time")
+    span.create-time(v-model="create_time")
 
-      a.ui.button(v-on="click: edit(this)" v-class="display-none: is_edit") Edit
-      a.ui.button(v-on="click: save(this)" v-class="display-none: !is_edit") Save
+  a.ui.button(v-on="click: edit(this)" v-class="display-none: is_edit") Edit
+  a.ui.button(v-on="click: save(this)" v-class="display-none: !is_edit") Save
 
-      .content
-        .mark(v-class="display-none: !is_edit")
-          textarea(v-model="content", debounce=1000)
-        .marked
-          .buttons
-          p(v-html="content | marked")
+  .content
+    .mark(v-class="display-none: !is_edit")
+      textarea(v-model="content", debounce=1000)
+    .marked
+      .buttons
+      p(v-html="content | marked")
+{% endblock %}
 
-    script(src=url_for('static', filename='lib/vue.js'))
-    script(src=url_for('static', filename='lib/marked.js'))
-    script
-      window.resume = new Vue({
-        el: '#resume',
-        data: {
-          is_edit: true,
-          update_time: '',
-          create_time: '',
-          content: {{ resume.content | tojson }}
-        },
-        filters: {
-          marked: marked
-        },
-        methods: {
-          edit: function(data){
-            data.is_edit = !data.is_edit;
-          },
-          save: function(data){
-            data.is_edit = !data.is_edit;
-          }
-        }
-      })
+{% block scripts %}
+script(src=url_for('static', filename='lib/vue.js'))
+script(src=url_for('static', filename='lib/marked.js'))
+script
+  window.resume = new Vue({
+    el: '#resume',
+    data: {
+      is_edit: true,
+      update_time: '',
+      create_time: '',
+      content: {{ resume.content | tojson }}
+    },
+    filters: {
+      marked: marked
+    },
+    methods: {
+      edit: function(data){
+        data.is_edit = !data.is_edit;
+      },
+      save: function(data){
+        data.is_edit = !data.is_edit;
+      }
+    }
+  })
+{% endblock %}
