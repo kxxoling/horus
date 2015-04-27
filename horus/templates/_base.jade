@@ -3,9 +3,34 @@ html
   head
     title
       {% block title %}Horus is watching you{% endblock %}
-    link(rel="stylesheet", type="text/css", href=url_for('static', filename = 'lib/semantic.min.css'))
+
+    {% block default_stylesheets %}
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename='lib/semantic.min.css'))
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename='css/main.css'))
+    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+    {% endblock %}
+
     {% block stylesheets %}{% endblock %}
   body
+    #header.following.bar
+      .ui.page.grid
+        .column
+          .ui.right.floated.secondary.menu.inverted
+            .ui.floating.dropdown.link.item
+              a User
+          .ui.large.inverted.secondary.network.menu
+            a.view-ui.item(href="/")
+              i.home.icon
+              | Home
+            a.view-ui.item(href=url_for('admin.index'))
+              i.fa.fa-cog.icon
+              | Admin
+            a.view-ui.item(href=url_for('frontend.list_resumes'))
+              i.fa.fa-file-text-o.icon
+              | Resumes
+            a.view-ui.item(href="")
+              i.fa.fa-briefcase.icon
+              | Jobs
     {% block body %}{% endblock %}
     {% block default_scripts %}
     script(href="http://semantic-ui.com/dist/semantic.min.js")
