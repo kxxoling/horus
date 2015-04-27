@@ -11,13 +11,29 @@ html
     {% endblock %}
 
     {% block stylesheets %}{% endblock %}
+
   body
     #header.following.bar
       .ui.page.grid
         .column
           .ui.right.floated.secondary.menu.inverted
             .ui.floating.dropdown.link.item
-              a User
+              {% if g.user %}
+              img.ui.image.mini.circular(src="http://gh.windrunner.info/resume/images/avatar.jpg")
+              | {{ g.user.name }}
+              {% else %}
+              .ui.teal.buttons
+                .ui.button
+                  a Login
+                .ui.floating.dropdown.icon.button
+                  i.dropdown.icon
+                  .menu
+                    .item
+                      a
+                        i.fa.fa-user-plus
+                        | Register
+              {% endif %}
+
           .ui.large.inverted.secondary.network.menu
             a.view-ui.item(href="/")
               i.home.icon
@@ -31,8 +47,14 @@ html
             a.view-ui.item(href="")
               i.fa.fa-briefcase.icon
               | Jobs
+
     {% block body %}{% endblock %}
+
     {% block default_scripts %}
-    script(href="http://semantic-ui.com/dist/semantic.min.js")
+    script(src="//code.jquery.com/jquery-1.11.2.min.js")
+    script(src="//semantic-ui.com/dist/semantic.min.js")
+    script
+      $('.ui.dropdown').dropdown();
     {% endblock %}
+
     {% block scripts %}{% endblock %}
