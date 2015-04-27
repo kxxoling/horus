@@ -2,6 +2,8 @@ from flask import Flask
 from flask import send_file
 
 from .views import frontend_views
+from .views import oauth_views
+from .views import oauth
 from .models import db as main_db
 from .admin import register_admin
 
@@ -24,6 +26,7 @@ def create_app(config=None):
 
     register_jinja(app)
     register_static(app)
+    register_oauth(app, oauth)
     register_routes(app)
     register_admin(app, main_db)
 
@@ -32,7 +35,12 @@ def create_app(config=None):
 
 def register_routes(app):
     app.register_blueprint(frontend_views)
+    app.register_blueprint(oauth_views)
     return app
+
+
+def register_oauth(app, oauth):
+    oauth.init_app(app)
 
 
 def register_static(app):
