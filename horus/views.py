@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask import render_template
-from flask import url_for, session, request, jsonify, redirect
+from flask import url_for, session, request, redirect, flash
 from flask.ext.oauthlib.client import OAuth
 
 from .models import Resume
