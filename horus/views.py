@@ -43,18 +43,18 @@ def show_resume(resume_id=None):
 
 
 @oauth_views.route('login/')
-def login():
-    return github.authorize(callback=url_for('oauth.authorized', _external=True))
+def github_login():
+    return github.authorize(callback=url_for('oauth.github_authorized', _external=True))
 
 
 @oauth_views.route('logout')
-def logout():
+def github_logout():
     session.pop('github_token', None)
     return redirect(url_for('frontend.index'))
 
 
 @oauth_views.route('login/authorized')
-def authorized():
+def github_authorized():
     resp = github.authorized_response()
     if resp is None:
         return 'Access denied: reason=%s error=%s' % (

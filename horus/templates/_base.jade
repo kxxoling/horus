@@ -16,23 +16,19 @@ html
     #header.following.bar
       .ui.page.grid
         .column
-          .ui.right.floated.secondary.menu.inverted
-            .ui.floating.dropdown.link.item
-              {% if g.user %}
-              img.ui.image.mini.circular(src="http://gh.windrunner.info/resume/images/avatar.jpg")
-              | {{ g.user.name }}
-              {% else %}
-              .ui.teal.buttons
-                .ui.button
-                  a Login
-                .ui.floating.dropdown.icon.button
-                  i.dropdown.icon
-                  .menu
-                    .item
-                      a
-                        i.fa.fa-user-plus
-                        | Register
-              {% endif %}
+          #auth.ui.right.floated.secondary.menu
+            {% if g.user %}
+            img.ui.image.mini.circular(src="http://gh.windrunner.info/resume/images/avatar.jpg")
+            | {{ g.user.name }}
+            {% else %}
+            .ui.simple.dropdown.item
+              | Login Now!
+              i.dropdown.icon
+              .menu
+                a.item(href=url_for('oauth.github_login'))
+                  i.fa.fa-github.icon
+                  | GitHub
+            {% endif %}
 
           .ui.large.inverted.secondary.network.menu
             a.view-ui.item(href="/")
