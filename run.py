@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from horus.apps import create_app
 
@@ -8,4 +9,6 @@ app = create_app(config_file)
 
 
 if __name__ == '__main__':
+    print('URL map:')
+    print(app.url_map)
     app.run(debug=True, host='0.0.0.0')

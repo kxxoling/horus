@@ -1,0 +1,56 @@
+!!! 5
+html
+  head
+    title
+      {% block title %}Horus is watching you{% endblock %}
+
+    {% block default_stylesheets %}
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename='lib/semantic.min.css'))
+    link(rel="stylesheet", type="text/css", href=url_for('static', filename='css/main.css'))
+    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+    {% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+  body
+    #header.following.bar
+      .ui.page.grid
+        .column
+          #auth.ui.right.floated.secondary.menu
+            {% if g.user %}
+            img.ui.image.mini.circular(src="http://gh.windrunner.info/resume/images/avatar.jpg")
+            | {{ g.user.name }}
+            {% else %}
+            .ui.simple.dropdown.item
+              | Login Now!
+              i.dropdown.icon
+              .menu
+                a.item(href=url_for('oauth.github_login'))
+                  i.fa.fa-github.icon
+                  | GitHub
+            {% endif %}
+
+          .ui.large.inverted.secondary.network.menu
+            a.view-ui.item(href="/")
+              i.home.icon
+              | Home
+            a.view-ui.item(href=url_for('admin.index'))
+              i.fa.fa-cog.icon
+              | Admin
+            a.view-ui.item(href=url_for('frontend.list_resumes'))
+              i.fa.fa-file-text-o.icon
+              | Resumes
+            a.view-ui.item(href="")
+              i.fa.fa-briefcase.icon
+              | Jobs
+
+    {% block body %}{% endblock %}
+
+    {% block default_scripts %}
+    script(src="//code.jquery.com/jquery-1.11.2.min.js")
+    script(src="//semantic-ui.com/dist/semantic.min.js")
+    script
+      $('.ui.dropdown').dropdown();
+    {% endblock %}
+
+    {% block scripts %}{% endblock %}

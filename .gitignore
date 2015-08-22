@@ -10,3 +10,4 @@ Thumbs.db
 
 config.py
 db.sqlite3
+horus/static/lib/themes/*

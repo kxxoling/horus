@@ -1,14 +1,18 @@
-.header {
+#header.following.bar {
   position: absolute;
-  top: 0px;
-  z-index: 900;
-  left: 0%;
-  padding: 2em 0em;
-  width: 100%;
-  box-shadow: 0px 0px 0px 0px transparent;
-  border-bottom: 1px solid transparent;
 }
 
+#header.following.bar a {
+  color: rgba(255,255,255,.8);
+}
+
+#header.following.bar #auth > .item.dropdown {
+  color: rgba(255,255,255,.8);
+}
+
+#header.following.bar #auth .menu {
+  background-color: rgba(255, 255, 255, 0);
+}
 #main.page {
   position: relative;
   overflow: hidden;

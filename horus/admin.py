@@ -1,3 +1,4 @@
+from flask import url_for
 from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.admin import Admin
 
@@ -10,7 +11,7 @@ class AdminRequiredView(ModelView):
 
 
 def register_admin(app, db):
-    admin = Admin(app, endpoint='admin')
+    admin = Admin(app, endpoint='admin', template_mode='bootstrap3')
     admin.add_view(AdminRequiredView(User, db.session))
     admin.add_view(AdminRequiredView(Work, db.session))
     admin.add_view(AdminRequiredView(Company, db.session))
